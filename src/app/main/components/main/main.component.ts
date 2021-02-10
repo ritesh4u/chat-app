@@ -12,6 +12,10 @@ export class MainComponent implements OnInit {
   array: any[];
   ngOnInit(): void {
     this.array = [];
+    for (let index = 0; index < 100; index++) {
+      this.array.push(index);
+    }
+    // this.array = [...this.array];
   }
 
 }

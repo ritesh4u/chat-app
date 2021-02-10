@@ -5,10 +5,18 @@
         </h3>
         <div class="d-flex align-items-center cursorPointer btn-link" (click)="authService.logout()">Logout</div>
     </div>
-    <div class="row main-container">
-        <div class="col-lg-3">three</div>
-        <div class="col-lg-6">
-                six
+    <div class="row main-container pb-1">
+        <div class="d-none d-md-block col-lg-3 border-right overflow-auto h-100">
+            <div class="p-3 d-flex align-items-center border-bottom cursorPointer user-info-card" *ngFor="let a of array">
+                <img class="img36" src="/assets/user.svg" alt="">
+                <div class="ml-3 overflow-hidden">
+                    <h5 class="m-0">Ritesh</h5>
+                    <div class="text-overflow">test messagetest messagetest messagetest messagetest message</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 border-right">
+            six
         </div>
         <div class="col-lg-3">three</div>
     </div>
