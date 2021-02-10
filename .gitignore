@@ -49,3 +49,4 @@ src/enviroments/enviroment.ts
 src/environments/env.local.ts
 firebase.json
 .firebaserc
+hosting.*
