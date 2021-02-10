@@ -1,21 +1,36 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import moduleName from 'firebase';
 @Injectable()
 export class AuthService {
 
-  constructor(private firebaseAuth: AngularFireAuth) {
+  constructor(private firebaseAuth: AngularFireAuth, private router: Router) {
     this.firebaseAuth.onAuthStateChanged(authState => {
       this.user = authState;
       // console.log(this.user);
     });
   }
   user: firebase.default.User;
+
+  getUserPromise(): Promise<firebase.default.User> {
+    return new Promise(resolve => {
+      this.firebaseAuth.onAuthStateChanged(authState => {
+        this.user = authState;
+        if (this.user) {
+          resolve(this.user);
+        } else {
+          resolve(null);
+        }
+      });
+    });
+  }
   signIn(email: string, password: string) {
     this.firebaseAuth.signInWithEmailAndPassword(email, password).
       then(result => {
         console.log(result);
         this.user = result.user;
+        this.router.navigate(['/main']);
       }).catch(e => {
         console.log(this.getErrorMessage(e.code));
       });
@@ -27,9 +42,10 @@ export class AuthService {
     console.log(this.user);
 
   }
-  logout() {
+  async logout() {
     this.user = null;
-    this.firebaseAuth.signOut;
+    await this.firebaseAuth.signOut();
+    window.location.href = "/login";
   }
   getErrorMessage(code: string): string {
     switch (code) {

@@ -1,0 +1,15 @@
+<div class="container-fluid h-100">
+    <div class="row bg-light p-3">
+        <h3 class="m-0 flex-grow-1">
+            Hello {{authService.user.displayName}}
+        </h3>
+        <div class="d-flex align-items-center cursorPointer btn-link" (click)="authService.logout()">Logout</div>
+    </div>
+    <div class="row main-container">
+        <div class="col-lg-3">three</div>
+        <div class="col-lg-6">
+                six
+        </div>
+        <div class="col-lg-3">three</div>
+    </div>
+</div>
